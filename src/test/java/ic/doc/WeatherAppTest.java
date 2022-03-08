@@ -27,16 +27,16 @@ public class WeatherAppTest {
   @Test
   public void canRequestFromClient() {
 
-//    // mock forecaster needs to be called,as cache does not contain forecast.
-//    context.checking(
-//        new Expectations() {
-//          {
-//            exactly(1).of(forecaster).requestForecast(with(any(Query.class)));
-//            //will(returnValue(any(Forecast.class)));
-//          }
-//        });
-//
-//    Forecast fc = app.retrieveForecast(DayOfWeek.MONDAY, "London");
+    // mock forecaster needs to be called,as cache does not contain forecast.
+    context.checking(
+        new Expectations() {
+          {
+            exactly(1).of(forecaster).requestForecast(with(any(Query.class)));
+            will(returnValue(with(any(Forecast.class))));
+          }
+        });
+
+    Forecast fc = app.retrieveForecast(DayOfWeek.MONDAY, "London");
   }
 
   @Test
