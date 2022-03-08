@@ -1,5 +1,6 @@
 package ic.doc;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -15,6 +16,7 @@ public class WeatherAppTest {
 
     assertThat(app.cacheSize(), is(2));
   }
+
   @Test
   public void canUpdateCacheWithCurrentWeather() {
     //app.updateCache();
