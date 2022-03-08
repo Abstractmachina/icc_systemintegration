@@ -63,9 +63,9 @@ public class WeatherAppTest {
     app.flushCache();
     app.setCacheLimit(2);
 
-    Forecast fc0 = app.retrieveForecast(DayOfWeek.MONDAY, "London");
-    Forecast fc1 = app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
-    Forecast fc2 = app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
+    app.retrieveForecast(DayOfWeek.MONDAY, "London");
+    app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
+    app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
 
     assertThat(app.cacheSize(),is(2));
   }
@@ -80,10 +80,15 @@ public class WeatherAppTest {
     app.flushCache();
     app.setCacheLimit(2);
 
-    Forecast fc0 = app.retrieveForecast(DayOfWeek.MONDAY, "London");
-    Forecast fc1 = app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
-    Forecast fc2 = app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
+    app.retrieveForecast(DayOfWeek.MONDAY, "London");
+    app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
+    app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
 
     assertThat(app.retrieveFirstForecast().getKey().day(), is(DayOfWeek.TUESDAY));
+  }
+
+  @Test
+  public void canRetrieveLastForecast() {
+    assertThat(app.retrieveLastForecast().getKey().day(), is(DayOfWeek.WEDNESDAY));
   }
 }
