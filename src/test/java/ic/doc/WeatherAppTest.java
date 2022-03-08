@@ -48,7 +48,7 @@ public class WeatherAppTest {
 
     Forecast fc0 = app.retrieveForecast(DayOfWeek.MONDAY, "London");
     Forecast fc1 = app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
-    //Forecast fc2 = app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
+    Forecast fc2 = app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
 
     assertThat(app.cacheSize(),is(3));
 
