@@ -18,9 +18,9 @@ public class WeatherAppTest {
 
   @Test
   public void canSetCacheLimit() {
-    app.setCacheLimit(2);
+    app.setCacheLimit(22);
 
-    assertThat(app.cacheSize(), is(2));
+    assertThat(app.cacheLimit(), is(22));
   }
 
   @Test
@@ -39,7 +39,6 @@ public class WeatherAppTest {
 
   @Test
   public void canStoreForecastsInCache() {
-
     context.checking(new Expectations() {
       {
         allowing(forecaster).requestForecast(with(any(Query.class)));
@@ -52,5 +51,22 @@ public class WeatherAppTest {
 
     assertThat(app.cacheSize(),is(3));
 
+  }
+
+  @Test
+  public void cacheIsLimited() {
+    context.checking(new Expectations() {
+      {
+        allowing(forecaster).requestForecast(with(any(Query.class)));
+      }
+    });
+    app.flushCache();
+    app.setCacheLimit(2);
+
+    Forecast fc0 = app.retrieveForecast(DayOfWeek.MONDAY, "London");
+    Forecast fc1 = app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
+    Forecast fc2 = app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
+
+    assertThat(app.cacheSize(),is(2));
   }
 }

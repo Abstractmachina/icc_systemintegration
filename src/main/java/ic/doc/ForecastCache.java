@@ -41,7 +41,32 @@ public class ForecastCache {
 
   private void requestForecastFromClient(Query q) {
     Forecast fc = forecaster.requestForecast(q);
+    if (size() >= limit) {
+      //cachedForecasts.remove(getFirst().getKey());
+    }
     cachedForecasts.put(q, fc);
+  }
+
+  private Map.Entry<Query, Forecast> getFirst() {
+    Set<Entry<Query, Forecast>> entrySet = cachedForecasts.entrySet();
+    Iterator<Map.Entry<Query, Forecast>> iterator = entrySet.iterator();
+
+    Map.Entry<Query, Forecast> first = null;
+    while (iterator.hasNext()) {
+      first = iterator.next();
+      break;
+    }
+    return first;
+  }
+  private Map.Entry<Query, Forecast> getLast() {
+    Set<Entry<Query, Forecast>> entrySet = cachedForecasts.entrySet();
+    Iterator<Map.Entry<Query, Forecast>> iterator = entrySet.iterator();
+
+    Map.Entry<Query, Forecast> last = null;
+    while (iterator.hasNext()) {
+      last = iterator.next();
+    }
+    return last;
   }
 
 
@@ -59,5 +84,9 @@ public class ForecastCache {
 
   public void setForecaster(IForecaster forecaster) {
     this.forecaster = forecaster;
+  }
+
+  public void clear() {
+    cachedForecasts.clear();
   }
 }

@@ -26,7 +26,7 @@ public class WeatherApp {
     return cache.size();
   }
 
-  public void addForecast(IForecaster fc) {
-
+  public void flushCache() {
+    cache.clear();
   }
 }
