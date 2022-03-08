@@ -15,7 +15,6 @@ public class WeatherAppTest {
   private final IForecaster forecaster = context.mock(IForecaster.class);
 
   WeatherApp app = new WeatherApp(forecaster);
-  // app.addForecast(forecast);
 
   @Test
   public void canSetCacheLimit() {
@@ -26,8 +25,7 @@ public class WeatherAppTest {
 
   @Test
   public void canRequestFromClient() {
-
-    // mock forecaster needs to be called,as cache does not contain forecast.
+    // mock forecaster will be called as cache does not contain any forecasts.
     context.checking(
         new Expectations() {
           {
@@ -40,20 +38,19 @@ public class WeatherAppTest {
   }
 
   @Test
-  public void canGetForecastByIndex() {
+  public void canStoreForecastsInCache() {
 
-    //    Forecast fc = app.retrieveForecast(0);
+    context.checking(new Expectations() {
+      {
+        allowing(forecaster).requestForecast(with(any(Query.class)));
+      }
+    });
+
+    Forecast fc0 = app.retrieveForecast(DayOfWeek.MONDAY, "London");
+    Forecast fc1 = app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
+    //Forecast fc2 = app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
+
+    assertThat(app.cacheSize(),is(3));
+
   }
-
-  @Test
-  public void canUpdateCacheWithCurrentWeather() {
-    // app.updateCache();
-    // app.getLastEntry();
-  }
-
-  //  @Test
-  //  public void printWeatherOnRequest() {
-  //
-  //  }
-
 }

@@ -28,7 +28,7 @@ public class ForecastCache {
     Iterator<Map.Entry<Query, Forecast>> iterator = entrySet.iterator();
 
     int i = 1;
-    int index = size();
+    int index = idx;
     while (iterator.hasNext()) {
       if (index - 1 == i) {
         return iterator.next().getValue();
@@ -44,10 +44,6 @@ public class ForecastCache {
     cachedForecasts.put(q, fc);
   }
 
-  public void retrieveForecast(IForecaster fc) {
-    // look in cache,
-    // if cache doesnt exist, request forecast from client.
-  }
 
   public void setLimit(int l) {
     limit = l;

@@ -14,10 +14,6 @@ public class WeatherApp {
     Query q = new Query(day, region);
       return cache.getForecast(q);
   }
-  //retrieve forecast based on index in cache
-//  public Forecast retrieveForecast(int i) {
-//  }
-
 
   public void setCacheLimit(int size) {
     cache.setLimit(size);

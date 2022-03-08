@@ -13,4 +13,11 @@ public class Query {
     region = r.toUpperCase();
   }
 
+  public DayOfWeek day() {
+    return day;
+  }
+
+  public String region() {
+    return region;
+  }
 }
