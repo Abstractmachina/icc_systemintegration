@@ -42,7 +42,7 @@ public class ForecastCache {
   private void requestForecastFromClient(Query q) {
     Forecast fc = forecaster.requestForecast(q);
     if (size() >= limit) {
-      //cachedForecasts.remove(getFirst().getKey());
+      cachedForecasts.remove(getFirst().getKey());
     }
     cachedForecasts.put(q, fc);
   }
