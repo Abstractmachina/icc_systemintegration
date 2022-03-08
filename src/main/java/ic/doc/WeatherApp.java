@@ -3,6 +3,7 @@ package ic.doc;
 import java.time.DayOfWeek;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.MissingResourceException;
 
 public class WeatherApp {
   private ForecastCache cache;
@@ -34,5 +35,9 @@ public class WeatherApp {
 
   public Entry<Query, Forecast> retrieveFirstForecast() {
     return cache.getFirst();
+  }
+
+  public Entry<Query, Forecast> retrieveLastForecast() {
+    return cache.getLast();
   }
 }

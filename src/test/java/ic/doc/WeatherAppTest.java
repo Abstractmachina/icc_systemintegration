@@ -89,6 +89,18 @@ public class WeatherAppTest {
 
   @Test
   public void canRetrieveLastForecast() {
+    context.checking(new Expectations() {
+      {
+        allowing(forecaster).requestForecast(with(any(Query.class)));
+      }
+    });
+    app.flushCache();
+    app.setCacheLimit(2);
+
+    app.retrieveForecast(DayOfWeek.MONDAY, "London");
+    app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
+    app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
+
     assertThat(app.retrieveLastForecast().getKey().day(), is(DayOfWeek.WEDNESDAY));
   }
 }

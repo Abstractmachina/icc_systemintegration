@@ -43,7 +43,7 @@ public class ForecastCache {
     return first;
   }
 
-  private Map.Entry<Query, Forecast> getLast() {
+  public Map.Entry<Query, Forecast> getLast() {
     Set<Entry<Query, Forecast>> entrySet = cachedForecasts.entrySet();
     Iterator<Map.Entry<Query, Forecast>> iterator = entrySet.iterator();
 
