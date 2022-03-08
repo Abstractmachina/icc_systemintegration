@@ -1,14 +1,13 @@
 package ic.doc;
 
 import com.weather.Day;
-import com.weather.Forecaster;
 import com.weather.Region;
 
-public class ForeCasterAdapter implements IForecaster {
+public class ForeCasterAdapter implements Forecaster {
 
   @Override
   public Forecast requestForecast(Query query) {
-    Forecaster forecaster = new Forecaster();
+    com.weather.Forecaster forecaster = new com.weather.Forecaster();
     Region region = Region.valueOf(query.region());
     Day day = Day.valueOf(query.day().name());
 

@@ -12,7 +12,7 @@ import org.junit.Test;
 public class WeatherAppTest {
 
   @Rule public JUnitRuleMockery context = new JUnitRuleMockery();
-  private final IForecaster forecaster = context.mock(IForecaster.class);
+  private final Forecaster forecaster = context.mock(Forecaster.class);
 
   WeatherApp app = new WeatherApp(forecaster);
 

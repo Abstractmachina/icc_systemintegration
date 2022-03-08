@@ -1,5 +1,5 @@
 package ic.doc;
 
-public interface IForecaster {
+public interface Forecaster {
   Forecast requestForecast(Query query);
 }

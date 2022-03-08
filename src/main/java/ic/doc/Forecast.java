@@ -27,7 +27,7 @@ public class Forecast {
     return region;
   }
 
-  public String Summary() {
+  public String summary() {
     return summary;
   }
 

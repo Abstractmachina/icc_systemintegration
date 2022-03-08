@@ -10,7 +10,7 @@ public class ForecastCache {
 
   private int limit = 10;
   private LinkedHashMap<Query, Forecast> cachedForecasts = new LinkedHashMap<>();
-  private IForecaster forecaster;
+  private Forecaster forecaster;
 
   public ForecastCache() {}
 
@@ -66,7 +66,7 @@ public class ForecastCache {
     return limit;
   }
 
-  public void setForecaster(IForecaster forecaster) {
+  public void setForecaster(Forecaster forecaster) {
     this.forecaster = forecaster;
   }
 

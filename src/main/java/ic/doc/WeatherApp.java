@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 public class WeatherApp {
   private ForecastCache cache;
 
-  public WeatherApp(IForecaster forecaster) {
+  public WeatherApp(Forecaster forecaster) {
     cache = new ForecastCache();
     cache.setForecaster(forecaster);
   }
