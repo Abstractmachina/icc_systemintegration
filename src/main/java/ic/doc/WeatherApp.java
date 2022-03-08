@@ -1,30 +1,36 @@
 package ic.doc;
 
-public class WeatherApp {
-  private CacheProxy cache;
+import java.time.DayOfWeek;
 
-  public WeatherApp() {
-    cache = new CacheProxy();
+public class WeatherApp {
+  private ForecastCache cache;
+
+  public WeatherApp(IForecaster forecaster) {
+    cache = new ForecastCache();
+    cache.setForecaster(forecaster);
   }
+
+  public Forecast retrieveForecast(DayOfWeek day, String region) {
+    Query q = new Query(day, region);
+      return cache.getForecast(q);
+  }
+  //retrieve forecast based on index in cache
+//  public Forecast retrieveForecast(int i) {
+//  }
+
 
   public void setCacheLimit(int size) {
     cache.setLimit(size);
   }
 
-
-  //retrieve forecast based on index in cache
-  private void retrieveForecast(int i) {
-
-    //look in cache for forecast,
-    //if not found, retrieve forecast from client.
-
+  public int cacheLimit() {
+    return cache.limit();
+  }
+  public int cacheSize() {
+    return cache.size();
   }
 
-  private void updateCache() {}
+  public void addForecast(IForecaster fc) {
 
-  private void clientForecastRequest() {}
-
-  public int cacheSize() {
-    return cache.limit();
   }
 }
