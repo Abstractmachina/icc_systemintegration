@@ -84,6 +84,6 @@ public class WeatherAppTest {
     Forecast fc1 = app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
     Forecast fc2 = app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
 
-    assertThat(app.retrieveFirstForecast().day, is(DayOfWeek.TUESDAY));
+    assertThat(app.retrieveFirstForecast().getKey().day(), is(DayOfWeek.TUESDAY));
   }
 }

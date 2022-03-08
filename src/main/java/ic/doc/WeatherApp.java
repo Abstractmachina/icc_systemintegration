@@ -1,6 +1,8 @@
 package ic.doc;
 
 import java.time.DayOfWeek;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class WeatherApp {
   private ForecastCache cache;
@@ -28,5 +30,9 @@ public class WeatherApp {
 
   public void flushCache() {
     cache.clear();
+  }
+
+  public Entry<Query, Forecast> retrieveFirstForecast() {
+    return cache.getFirst();
   }
 }

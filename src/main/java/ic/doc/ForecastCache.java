@@ -31,7 +31,7 @@ public class ForecastCache {
     cachedForecasts.put(q, fc);
   }
 
-  private Map.Entry<Query, Forecast> getFirst() {
+  public Map.Entry<Query, Forecast> getFirst() {
     Set<Entry<Query, Forecast>> entrySet = cachedForecasts.entrySet();
     Iterator<Map.Entry<Query, Forecast>> iterator = entrySet.iterator();
 
