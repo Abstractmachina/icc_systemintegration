@@ -18,25 +18,9 @@ public class ForecastCache {
     if (cachedForecasts.containsKey(query)) {
       return cachedForecasts.get(query);
     }
-    //if query does not exist, request from client.
+    // if query does not exist, request from client.
     requestForecastFromClient(query);
     return cachedForecasts.get(query);
-  }
-
-  public Forecast getForecast(int idx) {
-    Set<Entry<Query, Forecast>> entrySet = cachedForecasts.entrySet();
-    Iterator<Map.Entry<Query, Forecast>> iterator = entrySet.iterator();
-
-    int i = 1;
-    int index = idx;
-    while (iterator.hasNext()) {
-      if (index - 1 == i) {
-        return iterator.next().getValue();
-      }
-      iterator.next();
-      i++;
-    }
-    return null;
   }
 
   private void requestForecastFromClient(Query q) {
@@ -58,6 +42,7 @@ public class ForecastCache {
     }
     return first;
   }
+
   private Map.Entry<Query, Forecast> getLast() {
     Set<Entry<Query, Forecast>> entrySet = cachedForecasts.entrySet();
     Iterator<Map.Entry<Query, Forecast>> iterator = entrySet.iterator();
@@ -68,7 +53,6 @@ public class ForecastCache {
     }
     return last;
   }
-
 
   public void setLimit(int l) {
     limit = l;

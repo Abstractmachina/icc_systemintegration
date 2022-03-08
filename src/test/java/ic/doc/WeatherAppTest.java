@@ -69,4 +69,21 @@ public class WeatherAppTest {
 
     assertThat(app.cacheSize(),is(2));
   }
+
+  @Test
+  public void oldestEntryIsDeletedWhenLimitIsReached() {
+    context.checking(new Expectations() {
+      {
+        allowing(forecaster).requestForecast(with(any(Query.class)));
+      }
+    });
+    app.flushCache();
+    app.setCacheLimit(2);
+
+    Forecast fc0 = app.retrieveForecast(DayOfWeek.MONDAY, "London");
+    Forecast fc1 = app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
+    Forecast fc2 = app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
+
+    assertThat(app.retrieveFirstForecast().day, is(DayOfWeek.TUESDAY));
+  }
 }
