@@ -39,27 +39,28 @@ public class WeatherAppTest {
 
   @Test
   public void canStoreForecastsInCache() {
-    context.checking(new Expectations() {
-      {
-        allowing(forecaster).requestForecast(with(any(Query.class)));
-      }
-    });
+    context.checking(
+        new Expectations() {
+          {
+            allowing(forecaster).requestForecast(with(any(Query.class)));
+          }
+        });
 
     Forecast fc0 = app.retrieveForecast(DayOfWeek.MONDAY, "London");
     Forecast fc1 = app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
     Forecast fc2 = app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
 
-    assertThat(app.cacheSize(),is(3));
-
+    assertThat(app.cacheSize(), is(3));
   }
 
   @Test
   public void cacheIsLimited() {
-    context.checking(new Expectations() {
-      {
-        allowing(forecaster).requestForecast(with(any(Query.class)));
-      }
-    });
+    context.checking(
+        new Expectations() {
+          {
+            allowing(forecaster).requestForecast(with(any(Query.class)));
+          }
+        });
     app.flushCache();
     app.setCacheLimit(2);
 
@@ -67,16 +68,17 @@ public class WeatherAppTest {
     app.retrieveForecast(DayOfWeek.TUESDAY, "Edinburgh");
     app.retrieveForecast(DayOfWeek.WEDNESDAY, "Birmingham");
 
-    assertThat(app.cacheSize(),is(2));
+    assertThat(app.cacheSize(), is(2));
   }
 
   @Test
   public void oldestEntryIsDeletedWhenLimitIsReached() {
-    context.checking(new Expectations() {
-      {
-        allowing(forecaster).requestForecast(with(any(Query.class)));
-      }
-    });
+    context.checking(
+        new Expectations() {
+          {
+            allowing(forecaster).requestForecast(with(any(Query.class)));
+          }
+        });
     app.flushCache();
     app.setCacheLimit(2);
 
@@ -89,11 +91,12 @@ public class WeatherAppTest {
 
   @Test
   public void canRetrieveLastForecast() {
-    context.checking(new Expectations() {
-      {
-        allowing(forecaster).requestForecast(with(any(Query.class)));
-      }
-    });
+    context.checking(
+        new Expectations() {
+          {
+            allowing(forecaster).requestForecast(with(any(Query.class)));
+          }
+        });
     app.flushCache();
     app.setCacheLimit(2);
 

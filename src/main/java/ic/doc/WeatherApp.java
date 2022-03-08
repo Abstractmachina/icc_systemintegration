@@ -1,9 +1,7 @@
 package ic.doc;
 
 import java.time.DayOfWeek;
-import java.util.Map;
 import java.util.Map.Entry;
-import java.util.MissingResourceException;
 
 public class WeatherApp {
   private ForecastCache cache;
@@ -15,7 +13,7 @@ public class WeatherApp {
 
   public Forecast retrieveForecast(DayOfWeek day, String region) {
     Query q = new Query(day, region);
-      return cache.getForecast(q);
+    return cache.getForecast(q);
   }
 
   public void setCacheLimit(int size) {
@@ -25,6 +23,7 @@ public class WeatherApp {
   public int cacheLimit() {
     return cache.limit();
   }
+
   public int cacheSize() {
     return cache.size();
   }

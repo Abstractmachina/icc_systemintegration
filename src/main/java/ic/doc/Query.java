@@ -1,8 +1,6 @@
 package ic.doc;
 
-import com.weather.Region;
 import java.time.DayOfWeek;
-import java.util.Locale;
 
 public class Query {
   private DayOfWeek day;

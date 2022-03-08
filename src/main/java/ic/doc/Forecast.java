@@ -4,9 +4,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 public class Forecast {
-  private final DayOfWeek day; //using java built in DayOfWeek
+  private final DayOfWeek day; // using java built in DayOfWeek
   // -> less coupling than Day enum from client api.
-  private final String region; //keeping as string, no need to add additional enum
+  private final String region; // keeping as string, no need to add additional enum
   private final String summary;
   private final float temperature;
   private final LocalDateTime querytime;
@@ -19,4 +19,23 @@ public class Forecast {
     this.querytime = LocalDateTime.now();
   }
 
+  public DayOfWeek day() {
+    return day;
+  }
+
+  public String region() {
+    return region;
+  }
+
+  public String Summary() {
+    return summary;
+  }
+
+  public float temperature() {
+    return temperature;
+  }
+
+  public LocalDateTime queryTime() {
+    return querytime;
+  }
 }
